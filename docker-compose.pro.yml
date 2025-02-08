@@ -3,10 +3,9 @@ services:
   node-express-app:
     build: 
       context: .  # ✅ This tells Docker to use the Dockerfile in the current directory
-      args:
-        - NODE_ENV=production
+      target: production
     volumes:
-      - ./src/:app/src/:ro  # ✅ Mounts the src directory to the app/src directory in the container    
+      - ./src:/app/src:ro  # ✅ Mounts the src directory to the app/src directory in the container    
     environment:
       - NODE_ENV=production
       - PORT=8000
