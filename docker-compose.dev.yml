@@ -1,12 +1,15 @@
-version: '3'
+
 services:
   node-express-app:
     build: 
       context: .  # ✅ This tells Docker to use the Dockerfile in the current directory
       args:
         - NODE_ENV=development
+    volumes:
+      - ./src:/app/src:ro  # ✅ Mounts the src directory to the app/src directory in the container    
     environment:
-      NODE_ENV: development
+      - NODE_ENV=development
+      - PORT=8000
     ports:
       - "8000:8000"  # ✅ Exposes port 8000
-    command: ["npm", "start"]
+    command: npm run start-dev

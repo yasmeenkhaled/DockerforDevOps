@@ -7,7 +7,7 @@ const app = express();
 //Poer that Server will run it  
 const port = process.env.port || 8000;  //by defult 8000 but can use any port 
 
-// to make server listen / response requestes
+// to make server listen / response requestesstarting `node ./src/index.js`
 app.listen(port, () => console.log(`App is up and running on port ${port}`));
 
-app.get('/', (req, res) => {res.send("Hello, Aliennnn Are u heare mee // dev ???!");});
+app.get('/', (req, res) => {res.send("Hello, Aliennnn Are u heare mee  dev ???!");});

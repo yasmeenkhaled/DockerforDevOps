@@ -1,10 +1,8 @@
-version: '3'
+
 services:
   node-express-app:  # Service name
     container_name: node-express-app  # Optional: Name of the container
     ports:
       - "8000:8000"  # Map host port 8000 to container port 8000
-    environment:
-      - NODE_ENV=development  # Environment variable
     env_file:
-      - ./.env  # Load environment variables from .env file
+      - ./.env  # Load envir variables from .env file

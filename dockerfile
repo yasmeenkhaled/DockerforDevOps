@@ -1,5 +1,5 @@
 # Use a stable Node.js image
-FROM node:14
+FROM node:18
 
 # Set the working directory inside the container
 WORKDIR /app
@@ -9,13 +9,11 @@ COPY package*.json /app/
 
 # Set the environment variable
 ARG NODE_ENV
-ENV NODE_ENV=$NODE_ENV
 
 # Install dependencies (production or development)
-RUN if [ "$NODE_ENV" = "production" ]; then \
-      npm install --only=production; \
-    else \
-      npm install; \
+RUN if [ "${NODE_ENV}" = "production" ]; \
+    then npm install --only=production; \
+    else npm install; \
     fi
 
 # Copy the remaining project files
