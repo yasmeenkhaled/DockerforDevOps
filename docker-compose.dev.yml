@@ -1,9 +1,13 @@
 version: '3'
 services:
   node-express-app:
-   build: ./Dockerfile.dev 
+   build: 
+   context: .
+   args:
+     - NODE_ENV=development
   environment:
       NODE_ENV: development   # We Using a Key-Value Map 
+  command: npm run dev
 
 
       

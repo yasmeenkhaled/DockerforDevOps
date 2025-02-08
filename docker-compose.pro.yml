@@ -1,6 +1,10 @@
 version: '3'
 services:
   node-express-app:
-   build: ./Dockerfile.pro  # Build the image from the Dockerfile in the current directory
+   build: 
+   context: .
+   args:
+     - NODE_ENV=production
 environment: NODE_ENV= production   
+command: npm start
 
