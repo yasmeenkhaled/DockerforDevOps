@@ -1,0 +1,9 @@
+version: '3'
+services:
+  node-express-app:
+   build: ./Dockerfile.dev  # Build the image from the Dockerfile in the current directory
+  environment:
+      NODE_ENV: development   # We Using a Key-Value Map 
+
+
+      
