@@ -68,3 +68,15 @@ Uisng As Ui to deal with database instade of commandline:
 
 ## Redis 
 - create client and from client connect to redis
+
+> npm i redis
+
+
+>// Connect to redis
+>
+>const redisClient = redis.createClient();
+>redisClient.on('error', err => console.log('Redis Client Error ......', err));
+>redisClient.on('connect', () => console.log('Connected to redis .....'));
+>redisClient.connect();
+
+
