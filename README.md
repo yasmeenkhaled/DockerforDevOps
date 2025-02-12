@@ -56,3 +56,15 @@ Project Include:
 
 ![image](https://github.com/user-attachments/assets/5f5071f5-18dd-4fd4-abe2-e261d0133f92)
 
+### Store database in container : using Volumes 
+![image](https://github.com/user-attachments/assets/23f405d3-c74b-47c6-b112-02779654eb9e)
+
+### Mongo-Express 
+Uisng As Ui to deal with database instade of commandline:
+
+![image](https://github.com/user-attachments/assets/b0a2d6e1-8d79-41e9-bbc3-e1b4f602e41a)
+
+
+
+## Redis 
+- create client and from client connect to redis
