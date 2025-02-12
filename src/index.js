@@ -1,34 +1,46 @@
-//Create Simple server
-//import to 
 const express = require('express');
 const mongoose = require('mongoose'); 
 const redis = require('redis');
 
-//Initilization
 const app = express();
 
+// Connect to Redis
+const redis_port = 6379;
+const redis_host = 'redis';
 
-// Connect to redis
+const redisClient = redis.createClient({
+    url: `redis://${redis_host}:${redis_port}`
+});
 
-const redisClient = redis.createClient();
-redisClient.on('error', err => console.log('Redis Client Error ......', err));
-redisClient.on('connect', () => console.log('Connected to redis .....'));
+redisClient.on('error', err => console.log('Redis Client Error:', err));
+redisClient.on('connect', () => console.log('Connected to Redis'));
 redisClient.connect();
 
-
-
-//Connect to db
-const db_user ='root' ;
+// Connect to MongoDB
+const db_user = 'root';
 const db_password = 'example';
 const db_port = 27017;    
 const db_host = 'mongo';
 const uri = `mongodb://${db_user}:${db_password}@${db_host}:${db_port}`;
-mongoose.connect(uri).then(() => console.log('Connected to MongoDB')).catch(err => console.log(err));
 
-//Poer that Server will run it  
-const port = process.env.port || 8000;  //by defult 8000 but can use any port 
+mongoose.connect(uri)
+    .then(() => console.log('Connected to MongoDB'))
+    .catch(err => console.log(err));
 
-// to make server listen / response requestesstarting `node ./src/index.js`
+const port = process.env.PORT || 8000;
+
 app.listen(port, () => console.log(`App is up and running on port ${port}`));
 
-app.get('/', (req, res) => {res.send("Hello, Aliennnn Are u heare mee  dev ???!");});
+app.get('/', (req, res) => {
+    redisClient.set('products', 'products ......');
+    res.send("Hello, Aliennnn! Are you hearing me, dev?");
+});
+
+app.get('/data', async (req, res) => {
+    try {
+        const product = await redisClient.get('products');
+        res.send(`Hello, Aliennnn! Are you hearing me, dev? <h1>${product}</h1>`);
+    } catch (err) {
+        res.status(500).send("Error fetching data from Redis");
+    }
+});
