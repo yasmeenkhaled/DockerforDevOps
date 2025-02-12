@@ -2,9 +2,20 @@
 //import to 
 const express = require('express');
 const mongoose = require('mongoose'); 
+const redis = require('redis');
 
 //Initilization
 const app = express();
+
+
+// Connect to redis
+
+const redisClient = redis.createClient();
+redisClient.on('error', err => console.log('Redis Client Error ......', err));
+redisClient.on('connect', () => console.log('Connected to redis .....'));
+redisClient.connect();
+
+
 
 //Connect to db
 const db_user ='root' ;

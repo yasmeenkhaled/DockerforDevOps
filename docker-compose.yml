@@ -6,6 +6,8 @@ services:
       - "8000:8000"  # Map host port 8000 to container port 8000
     env_file:
       - ./.env  # Load envir variables from .env file
+    depends_on:
+      - mongo  # Wait for the mongo service to be ready
   mongo:  #ready image
     image: mongo
     restart: always
@@ -14,7 +16,26 @@ services:
     environment:
       MONGO_INITDB_ROOT_USERNAME: root
       MONGO_INITDB_ROOT_PASSWORD: example   
+  mongo-express:
+    image: mongo-express
+    restart: always
+    ports:
+      - 8081:8081
+    environment:
+      ME_CONFIG_MONGODB_ADMINUSERNAME: root
+      ME_CONFIG_MONGODB_ADMINPASSWORD: example
+      ME_CONFIG_MONGODB_URL: mongodb://root:example@mongo:27017/
+      ME_CONFIG_BASICAUTH: "false" 
+    depends_on:
+      - mongo  
+  redis:
+    image: redis
+    restart: always
 volumes:
     mongo-db:
+
+
+
+
 
     
