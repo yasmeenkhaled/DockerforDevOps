@@ -1,9 +1,9 @@
 # Use a stable Node.js image
-FROM node:18 as base
+FROM node:18 AS base
 
 
 
-FROM base as development
+FROM base AS development
 
 WORKDIR /app
 
@@ -20,7 +20,7 @@ CMD ["npm", "run", "start-dev"]
 
 
 
-FROM base as production
+FROM base AS production
 WORKDIR /app
 
 COPY package*.json /app/
