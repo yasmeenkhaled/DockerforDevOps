@@ -80,3 +80,9 @@ Uisng As Ui to deal with database instade of commandline:
 >redisClient.connect();
 
 
+## Nginx-Server 
+ - create configration file
+ - create volume to sync trafic from main app to nginx server
+
+ 
+
